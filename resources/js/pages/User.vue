@@ -8,6 +8,11 @@
     <section v-else>
       <div>
         Daftar User
+        <ul>
+          <li v-for="user in users">
+            {{ user.name }}
+          </li>
+        </ul>
       </div>
     </section>
   </div>
@@ -15,7 +20,18 @@
 
 <script>
 export default {
-  props: ['name']
+  props: ['name'],
+  data() {
+    return {
+      users: [
+        { id: 1, name: 'A1' },
+        { id: 2, name: 'A2' },
+        { id: 3, name: 'A3' },
+        { id: 4, name: 'A4' },
+        { id: 5, name: 'A5' },
+      ]
+    }
+  }
 }
 </script>
 

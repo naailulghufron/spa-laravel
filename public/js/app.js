@@ -5458,9 +5458,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['name']
+  props: ['name'],
+  data: function data() {
+    return {
+      users: [{
+        id: 1,
+        name: 'A1'
+      }, {
+        id: 2,
+        name: 'A2'
+      }, {
+        id: 3,
+        name: 'A3'
+      }, {
+        id: 4,
+        name: 'A4'
+      }, {
+        id: 5,
+        name: 'A5'
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -5609,12 +5634,15 @@ var About = (__webpack_require__(/*! ../pages/About.vue */ "./resources/js/pages
 // const _404 = require('./pages/_404.vue').default
 
 var routes = [{
+  name: 'Home',
   path: '/home',
   component: Home
 }, {
+  name: 'About',
   path: '/about',
   component: About
 }, {
+  name: 'User',
   path: '/user/:name?',
   component: _pages_User_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   props: true
@@ -28885,11 +28913,17 @@ var render = function () {
     _c(
       "nav",
       [
-        _c("router-link", { attrs: { to: "/home" } }, [_vm._v("Home")]),
+        _c("router-link", { attrs: { to: { name: "Home" } } }, [
+          _vm._v("Home"),
+        ]),
         _vm._v(" "),
-        _c("router-link", { attrs: { to: "/about" } }, [_vm._v("About")]),
+        _c("router-link", { attrs: { to: { name: "About" } } }, [
+          _vm._v("About"),
+        ]),
         _vm._v(" "),
-        _c("router-link", { attrs: { to: "/user/name" } }, [_vm._v("User")]),
+        _c("router-link", { attrs: { to: { name: "User" } } }, [
+          _vm._v("User"),
+        ]),
       ],
       1
     ),
@@ -28973,7 +29007,20 @@ var render = function () {
       ? _c("section", [
           _c("div", [_vm._v("\n      User " + _vm._s(_vm.name) + "\n    ")]),
         ])
-      : _c("section", [_c("div", [_vm._v("\n      Daftar User\n    ")])]),
+      : _c("section", [
+          _c("div", [
+            _vm._v("\n      Daftar User\n      "),
+            _c(
+              "ul",
+              _vm._l(_vm.users, function (user) {
+                return _c("li", [
+                  _vm._v("\n          " + _vm._s(user.name) + "\n        "),
+                ])
+              }),
+              0
+            ),
+          ]),
+        ]),
   ])
 }
 var staticRenderFns = []
