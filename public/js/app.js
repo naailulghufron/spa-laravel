@@ -5463,6 +5463,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['name'],
@@ -29013,9 +29015,15 @@ var render = function () {
             _c(
               "ul",
               _vm._l(_vm.users, function (user) {
-                return _c("li", [
-                  _vm._v("\n          " + _vm._s(user.name) + "\n        "),
-                ])
+                return _c(
+                  "li",
+                  [
+                    _c("router-link", { attrs: { to: "user/" + user.name } }, [
+                      _vm._v(_vm._s(user.name)),
+                    ]),
+                  ],
+                  1
+                )
               }),
               0
             ),

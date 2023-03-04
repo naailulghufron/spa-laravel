@@ -10,7 +10,9 @@
         Daftar User
         <ul>
           <li v-for="user in users">
-            {{ user.name }}
+            <!-- {{ user.name }} -->
+            <router-link :to="'user/' + user.name">{{ user.name }}</router-link>
+            <!-- <router-link to="/user/{{ user.name }}">{{ user.name }}</router-link> -->
           </li>
         </ul>
       </div>
