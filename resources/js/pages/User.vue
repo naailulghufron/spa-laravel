@@ -11,7 +11,7 @@
         <ul>
           <li v-for="user in users">
             <!-- {{ user.name }} -->
-            <router-link :to="'user/' + user.name">{{ user.name }}</router-link>
+            <router-link :to="profile_uri(user.name)">{{ user.name }}</router-link>
             <!-- <router-link to="/user/{{ user.name }}">{{ user.name }}</router-link> -->
           </li>
         </ul>
@@ -33,7 +33,12 @@ export default {
         { id: 5, name: 'A5' },
       ]
     }
-  }
+  },
+  methods: {
+    profile_uri(name) {
+      return '/user/' + name
+    },
+  },
 }
 </script>
 
