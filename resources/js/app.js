@@ -27,29 +27,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 
-const Home = require('./pages/Home.vue').default
-const About = require('./pages/About.vue').default
-const _404 = require('./pages/_404.vue').default
 
-const routes = [
-    {
-        path: '/home',
-        component: Home,
-    },
-    {
-        path: '/about',
-        component: About,
-    },
-    {
-        path: '*',
-        component: _404,
-    },
-]
+import router from './router'
+// router from folder router
 
-const router = new VueRouter({
-    mode: 'history',
-    routes
-})
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

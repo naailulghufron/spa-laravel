@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::any('/{slug}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::any('/{slug}/{slug1}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('{any}', function () {
+    return view('home');
+});
+// Route::any('/{slug}', function () {
+//     view('home');
+// });
