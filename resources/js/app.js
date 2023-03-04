@@ -27,8 +27,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 
-const Home = require('./pages/Home.vue')
-const About = require('./pages/About.vue')
+const Home = require('./pages/Home.vue').default
+const About = require('./pages/About.vue').default
+const _404 = require('./pages/_404.vue').default
 
 const routes = [
     {
@@ -39,9 +40,14 @@ const routes = [
         path: '/about',
         component: About,
     },
+    {
+        path: '*',
+        component: _404,
+    },
 ]
 
 const router = new VueRouter({
+    mode: 'history',
     routes
 })
 /**

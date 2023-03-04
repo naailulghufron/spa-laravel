@@ -12,8 +12,9 @@
     <div id="app">
         <header-component></header-component>
         {{-- <h1>Hello wolrd @{{ title }}</h1> --}}
-        <h1 v-text="`Hello ` + title"></h1>
-        <example-component></example-component>
+        <router-view></router-view>
+        {{-- <h1 v-text="`Hello ` + title"></h1> --}}
+        {{-- <example-component></example-component> --}}
         <footer-component></footer-component>
     </div>
     {{-- <example-component></example-component> --}}

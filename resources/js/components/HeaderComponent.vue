@@ -1,9 +1,8 @@
 <template>
   <div>
     <nav>
-      <a href="">Home</a>
-      <a href="">Modul 1</a>
-      <a href="">About</a>
+      <router-link to="/home">Home</router-link>
+      <router-link to="/about">About</router-link>
     </nav>
   </div>
 </template>

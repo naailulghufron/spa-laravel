@@ -1,6 +1,7 @@
 <template>
   <div>
-    About
+    <h1>404</h1>
+    <h3>Not Foud</h3>
   </div>
 </template>
 
