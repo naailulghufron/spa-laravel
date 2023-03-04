@@ -5673,6 +5673,7 @@ var routes = [{
   component: _pages_404_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  linkActiveClass: 'active',
   mode: 'history',
   routes: routes
 });
