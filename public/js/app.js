@@ -5465,6 +5465,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['name'],
@@ -5472,25 +5479,28 @@ __webpack_require__.r(__webpack_exports__);
     return {
       users: [{
         id: 1,
-        name: 'A1'
+        name: 'A1 asdfasf'
       }, {
         id: 2,
-        name: 'A2'
+        name: 'A2 rtreggd gdg'
       }, {
         id: 3,
-        name: 'A3'
+        name: 'A3 fsfew  ssf sdf'
       }, {
         id: 4,
-        name: 'A4'
+        name: 'A4 sfs fsdf sdfsf dsfs'
       }, {
         id: 5,
-        name: 'A5'
+        name: 'A5 sdf sfs fsfew'
       }]
     };
   },
   methods: {
     profile_uri: function profile_uri(name) {
-      return '/user/' + name;
+      return '/user/' + name.toUpperCase();
+    },
+    sendData: function sendData(d) {
+      this.$router.push('/user/' + d.toUpperCase());
     }
   }
 });
@@ -29012,25 +29022,38 @@ var render = function () {
   return _c("div", [
     _vm.name
       ? _c("section", [
-          _c("div", [_vm._v("\n      User " + _vm._s(_vm.name) + "\n    ")]),
+          _c(
+            "div",
+            [
+              _c("router-link", { attrs: { to: { name: "User" } } }, [
+                _vm._v("Back"),
+              ]),
+              _vm._v("\n      User " + _vm._s(_vm.name) + "\n    "),
+            ],
+            1
+          ),
         ])
       : _c("section", [
           _c("div", [
-            _vm._v("\n      Daftar User\n      "),
+            _vm._v("\n      Daftar User\n\n      "),
             _c(
               "ul",
               _vm._l(_vm.users, function (user) {
-                return _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: _vm.profile_uri(user.name) } },
-                      [_vm._v(_vm._s(user.name))]
-                    ),
-                  ],
-                  1
-                )
+                return _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.sendData(user.name)
+                        },
+                      },
+                    },
+                    [_vm._v(_vm._s(user.name))]
+                  ),
+                ])
               }),
               0
             ),
