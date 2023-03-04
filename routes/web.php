@@ -23,7 +23,7 @@ Auth::routes();
 // Route::any('/{slug}/{slug1}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('{any}', function () {
     return view('home');
-});
+})->where('any', '.*');
 // Route::any('/{slug}', function () {
 //     view('home');
 // });

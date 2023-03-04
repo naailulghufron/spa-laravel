@@ -1,8 +1,8 @@
 <template>
   <div>
-    <section v-if="$route.params.name">
+    <section v-if="name">
       <div>
-        User {{ $route.params.name }}
+        User {{ name }}
       </div>
     </section>
     <section v-else>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-
+  props: ['name']
 }
 </script>
 

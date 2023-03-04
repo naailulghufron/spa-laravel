@@ -5459,7 +5459,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['name']
+});
 
 /***/ }),
 
@@ -5614,7 +5616,8 @@ var routes = [{
   component: About
 }, {
   path: '/user/:name?',
-  component: _pages_User_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _pages_User_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+  props: true
 }, {
   path: '*',
   component: _pages_404_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -28966,11 +28969,9 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.$route.params.name
+    _vm.name
       ? _c("section", [
-          _c("div", [
-            _vm._v("\n      User " + _vm._s(_vm.$route.params.name) + "\n    "),
-          ]),
+          _c("div", [_vm._v("\n      User " + _vm._s(_vm.name) + "\n    ")]),
         ])
       : _c("section", [_c("div", [_vm._v("\n      Daftar User\n    ")])]),
   ])
