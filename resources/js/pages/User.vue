@@ -1,9 +1,9 @@
 <template>
   <div>
-    <section v-if="name">
+    <section v-if="id_name">
       <div>
         <router-link :to="{ name: 'User' }">Back</router-link>
-        User {{ name }}
+        User {{ id_name }}
       </div>
     </section>
     <section v-else>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ['name'],
+  props: ['id_name'],
   data() {
     return {
       users: [
@@ -46,7 +46,10 @@ export default {
       return '/user/' + name.toUpperCase()
     },
     sendData(d) {
-      this.$router.push('/user/' + d.toUpperCase())
+      this.$router.push({
+        name: 'User',
+        params: { id_name: d.toUpperCase() }
+      })
     }
   },
 }

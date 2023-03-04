@@ -5474,7 +5474,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['name'],
+  props: ['id_name'],
   data: function data() {
     return {
       users: [{
@@ -5500,7 +5500,12 @@ __webpack_require__.r(__webpack_exports__);
       return '/user/' + name.toUpperCase();
     },
     sendData: function sendData(d) {
-      this.$router.push('/user/' + d.toUpperCase());
+      this.$router.push({
+        name: 'User',
+        params: {
+          id_name: d.toUpperCase()
+        }
+      });
     }
   }
 });
@@ -5660,7 +5665,7 @@ var routes = [{
   component: About
 }, {
   name: 'User',
-  path: '/user/:name?',
+  path: '/user/:id_name?',
   component: _pages_User_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   props: true
 }, {
@@ -29020,7 +29025,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.name
+    _vm.id_name
       ? _c("section", [
           _c(
             "div",
@@ -29028,7 +29033,7 @@ var render = function () {
               _c("router-link", { attrs: { to: { name: "User" } } }, [
                 _vm._v("Back"),
               ]),
-              _vm._v("\n      User " + _vm._s(_vm.name) + "\n    "),
+              _vm._v("\n      User " + _vm._s(_vm.id_name) + "\n    "),
             ],
             1
           ),
