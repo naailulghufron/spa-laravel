@@ -3,7 +3,7 @@
     <section v-if="id_name">
       <div>
         <router-link :to="{ name: 'User' }">Back</router-link>
-        User {{ id_name }}
+        User {{ userDetail.name }}
       </div>
     </section>
     <section v-else>
@@ -19,7 +19,7 @@
             <!-- Cara 3 -->
             <!-- <router-link :to="profile_uri(user.name)">{{ user.name }}</router-link> -->
             <!-- Cara 4 -->
-            <a href="" @click.prevent="sendData(user.name)">{{ user.name }}</a>
+            <a href="" @click.prevent="sendData(user.id)">{{ user.name }}</a>
           </li>
         </ul>
       </div>
@@ -32,7 +32,8 @@ export default {
   props: ['id_name'],
   data() {
     return {
-      users: []
+      users: [],
+      userDetail: {},
       //   users: [
       //     { id: 1, name: 'A1 asdfasf' },
       //     { id: 2, name: 'A2 rtreggd gdg' },
@@ -42,21 +43,43 @@ export default {
       //   ]
     }
   },
+  watch: {
+    "$route": "getUsers"
+  },
   mounted() {
-    //
-    axios.get('/api/users').then((response) => {
-      console.log(response);
-      this.users = response.data.users
-    })
+    this.getUsers()
+    // axios.get('/api/users').then((response) => {
+    //   console.log(response);
+    //   this.users = response.data.users
+    // })
+
+    // fetch('/api/users').then(res => res.json()).then(data => {
+    //   console.log(data);
+    //   this.users = data.users
+    // })
   },
   methods: {
+    getUsers() {
+      axios.get('/api/users').then((response) => {
+        // console.log(response);
+        this.users = response.data.users
+        if (this.id_name) {
+          //   console.log(this.users);
+          //   console.log(this.id_name);
+          //   console.log(this.id_name[0]);
+          this.userDetail = this.users.filter(u => u.id == this.id_name)[0]
+          //   console.log(this.user);
+          //   console.log(this.id_name);
+        }
+      })
+    },
     profile_uri(name) {
       return '/user/' + name.toUpperCase()
     },
     sendData(d) {
       this.$router.push({
         name: 'User',
-        params: { id_name: d.toUpperCase() }
+        params: { id_name: d }
       })
     }
   },

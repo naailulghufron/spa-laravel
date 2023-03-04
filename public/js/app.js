@@ -5477,7 +5477,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['id_name'],
   data: function data() {
     return {
-      users: []
+      users: [],
+      userDetail: {}
       //   users: [
       //     { id: 1, name: 'A1 asdfasf' },
       //     { id: 2, name: 'A2 rtreggd gdg' },
@@ -5487,15 +5488,41 @@ __webpack_require__.r(__webpack_exports__);
       //   ]
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-    //
-    axios.get('/api/users').then(function (response) {
-      console.log(response);
-      _this.users = response.data.users;
-    });
+
+  watch: {
+    "$route": "getUsers"
   },
+  mounted: function mounted() {
+    this.getUsers();
+    // axios.get('/api/users').then((response) => {
+    //   console.log(response);
+    //   this.users = response.data.users
+    // })
+
+    // fetch('/api/users').then(res => res.json()).then(data => {
+    //   console.log(data);
+    //   this.users = data.users
+    // })
+  },
+
   methods: {
+    getUsers: function getUsers() {
+      var _this = this;
+      axios.get('/api/users').then(function (response) {
+        // console.log(response);
+        _this.users = response.data.users;
+        if (_this.id_name) {
+          //   console.log(this.users);
+          //   console.log(this.id_name);
+          //   console.log(this.id_name[0]);
+          _this.userDetail = _this.users.filter(function (u) {
+            return u.id == _this.id_name;
+          })[0];
+          //   console.log(this.user);
+          //   console.log(this.id_name);
+        }
+      });
+    },
     profile_uri: function profile_uri(name) {
       return '/user/' + name.toUpperCase();
     },
@@ -5503,7 +5530,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'User',
         params: {
-          id_name: d.toUpperCase()
+          id_name: d
         }
       });
     }
@@ -29034,7 +29061,7 @@ var render = function () {
               _c("router-link", { attrs: { to: { name: "User" } } }, [
                 _vm._v("Back"),
               ]),
-              _vm._v("\n      User " + _vm._s(_vm.id_name) + "\n    "),
+              _vm._v("\n      User " + _vm._s(_vm.userDetail.name) + "\n    "),
             ],
             1
           ),
@@ -29053,7 +29080,7 @@ var render = function () {
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.sendData(user.name)
+                          return _vm.sendData(user.id)
                         },
                       },
                     },
