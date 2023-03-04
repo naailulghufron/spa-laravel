@@ -32,14 +32,22 @@ export default {
   props: ['id_name'],
   data() {
     return {
-      users: [
-        { id: 1, name: 'A1 asdfasf' },
-        { id: 2, name: 'A2 rtreggd gdg' },
-        { id: 3, name: 'A3 fsfew  ssf sdf' },
-        { id: 4, name: 'A4 sfs fsdf sdfsf dsfs' },
-        { id: 5, name: 'A5 sdf sfs fsfew' },
-      ]
+      users: []
+      //   users: [
+      //     { id: 1, name: 'A1 asdfasf' },
+      //     { id: 2, name: 'A2 rtreggd gdg' },
+      //     { id: 3, name: 'A3 fsfew  ssf sdf' },
+      //     { id: 4, name: 'A4 sfs fsdf sdfsf dsfs' },
+      //     { id: 5, name: 'A5 sdf sfs fsfew' },
+      //   ]
     }
+  },
+  mounted() {
+    //
+    axios.get('/api/users').then((response) => {
+      console.log(response);
+      this.users = response.data.users
+    })
   },
   methods: {
     profile_uri(name) {

@@ -5477,23 +5477,23 @@ __webpack_require__.r(__webpack_exports__);
   props: ['id_name'],
   data: function data() {
     return {
-      users: [{
-        id: 1,
-        name: 'A1 asdfasf'
-      }, {
-        id: 2,
-        name: 'A2 rtreggd gdg'
-      }, {
-        id: 3,
-        name: 'A3 fsfew  ssf sdf'
-      }, {
-        id: 4,
-        name: 'A4 sfs fsdf sdfsf dsfs'
-      }, {
-        id: 5,
-        name: 'A5 sdf sfs fsfew'
-      }]
+      users: []
+      //   users: [
+      //     { id: 1, name: 'A1 asdfasf' },
+      //     { id: 2, name: 'A2 rtreggd gdg' },
+      //     { id: 3, name: 'A3 fsfew  ssf sdf' },
+      //     { id: 4, name: 'A4 sfs fsdf sdfsf dsfs' },
+      //     { id: 5, name: 'A5 sdf sfs fsfew' },
+      //   ]
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+    //
+    axios.get('/api/users').then(function (response) {
+      console.log(response);
+      _this.users = response.data.users;
+    });
   },
   methods: {
     profile_uri: function profile_uri(name) {
