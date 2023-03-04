@@ -20,11 +20,13 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('123456'),
         ]);
-        // $f = Faker::create(100);
-        // User::create([
-        //     'name' => $f->name,
-        //     'email' => $f->email,
-        //     'password' => bcrypt('123456'),
-        // ]);
+        // for ($i = 0; $i < 1000; $i++) {
+        //     $f = Faker::create();
+        //     User::create([
+        //         'name' => $f->name,
+        //         'email' => $f->email,
+        //         'password' => bcrypt('123456'),
+        //     ]);
+        // }
     }
 }
