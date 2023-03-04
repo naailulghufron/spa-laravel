@@ -1,23 +1,23 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SPA - Laravel</title>
+</head>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+<body>
+    <div id="app">
+        <header-component></header-component>
+        {{-- <h1>Hello wolrd @{{ title }}</h1> --}}
+        <h1 v-text="`Hello ` + title"></h1>
+        <example-component></example-component>
+        <footer-component></footer-component>
     </div>
-</div>
-@endsection
+    {{-- <example-component></example-component> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+
+</html>
