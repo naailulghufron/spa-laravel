@@ -141,4 +141,40 @@ class UserApiController extends Controller
         $data = $user;
         return response()->json(compact('status', 'message', 'data'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function upload(Request $request, $id)
+    {
+        $d = $request->image;
+        // return response()->json(compact('request', 'id', 'd'));
+        $validator = Validator::make($request->all(), [
+            // 'user_name' => 'required',
+            // 'email' => 'required|unique:users,email,' . $id,
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) :
+            $status = false;
+            $message = $validator->errors();
+            return response()->json(compact('status', 'message'), 403);
+        endif;
+
+        $user = User::find($id);
+        $image_name = time() . '.' . $request->image->extension();
+        $user->photo = $image_name;
+        $user->save();
+
+        $request->image->move(public_path('images/users'), $image_name);
+
+        $status = true;
+        $message = 'Data berhasil diubah';
+        $data = $user;
+        return response()->json(compact('status', 'message', 'data'));
+    }
 }

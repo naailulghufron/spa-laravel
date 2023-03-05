@@ -43,6 +43,7 @@
                 <button @click.prevent="sendData(user.id)" class="btn btn-sm btn-danger">Show</button>
                 <button @click.prevent="editUser(user.id)" class="btn btn-sm btn-danger">Edit</button>
                 <button @click.prevent="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button>
+                <button @click.prevent="uploadImageUser(user.id)" class="btn btn-sm btn-danger">Upload</button>
               </td>
             </tr>
           </tbody>
@@ -126,6 +127,12 @@ export default {
     editUser(id) {
       this.$router.push({
         name: 'EditUser',
+        params: { id }
+      })
+    },
+    uploadImageUser(id) {
+      this.$router.push({
+        name: 'UploadImageUser',
         params: { id }
       })
     }

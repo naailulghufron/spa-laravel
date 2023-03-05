@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('users', [UserApiController::class, 'index']);
 // Route::get('users/{id}', [UserApiController::class, 'show']);
+Route::post('/users/upload/{id}', [UserApiController::class, 'upload']);
 Route::resource('users', UserApiController::class);

@@ -11,6 +11,7 @@ import User from '../pages/users/User.vue'
 import Profile from '../pages/users/Profile.vue'
 import Register from '../pages/users/Register.vue'
 import EditUser from '../pages/users/Edit.vue'
+import UploadImageUser from '../pages/users/Upload.vue'
 // const _404 = require('./pages/_404.vue').default
 
 const routes = [
@@ -41,6 +42,12 @@ const routes = [
     name: 'EditUser',
     path: '/user/:id/edit',
     component: EditUser,
+    props: true,
+  },
+  {
+    name: 'UploadImageUser',
+    path: '/user/upload/:id',
+    component: UploadImageUser,
     props: true,
   },
   {
