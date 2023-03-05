@@ -10,6 +10,9 @@
       <!-- <section v-else> -->
       <div>
         Daftar User
+        <br>
+        <router-link to="/user/create">Create</router-link>
+        <br>
 
         <ul>
           <li v-for="user in users">

@@ -23,6 +23,10 @@ Vue.use(VueRouter)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+import VueNoty from 'vuejs-noty'
+Vue.use(VueNoty)
+import 'vuejs-noty/dist/vuejs-noty.css'
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
