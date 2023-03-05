@@ -89,7 +89,8 @@ class UserApiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::find($id);
+        return response()->json(compact('users'));
     }
 
     /**
@@ -101,7 +102,27 @@ class UserApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'user_name' => 'required',
+            'email' => 'required|unique:users,email,' . $id,
+        ]);
+
+        if ($validator->fails()) :
+            $status = false;
+            $message = $validator->errors();
+            return response()->json(compact('status', 'message'), 403);
+        endif;
+
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->user_name,
+            'email' => $request->email,
+        ]);
+
+        $status = true;
+        $message = 'Data berhasil diubah';
+        $data = $user;
+        return response()->json(compact('status', 'message', 'data'));
     }
 
     /**
@@ -112,6 +133,12 @@ class UserApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::destroy($id);
+        // $user->delete();
+
+        $status = true;
+        $message = 'Data berhasil dihapus';
+        $data = $user;
+        return response()->json(compact('status', 'message', 'data'));
     }
 }

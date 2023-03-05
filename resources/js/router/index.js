@@ -10,6 +10,7 @@ const About = require('../pages/About.vue').default
 import User from '../pages/users/User.vue'
 import Profile from '../pages/users/Profile.vue'
 import Register from '../pages/users/Register.vue'
+import EditUser from '../pages/users/Edit.vue'
 // const _404 = require('./pages/_404.vue').default
 
 const routes = [
@@ -35,6 +36,12 @@ const routes = [
     name: 'Register',
     path: '/user/create',
     component: Register,
+  },
+  {
+    name: 'EditUser',
+    path: '/user/:id/edit',
+    component: EditUser,
+    props: true,
   },
   {
     name: 'Profile',

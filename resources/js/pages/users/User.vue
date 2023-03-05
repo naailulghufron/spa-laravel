@@ -41,8 +41,8 @@
               <td>{{ user.email }}</td>
               <td>
                 <button @click.prevent="sendData(user.id)" class="btn btn-sm btn-danger">Show</button>
-                <button class="btn btn-sm btn-danger">Edit</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
+                <button @click.prevent="editUser(user.id)" class="btn btn-sm btn-danger">Edit</button>
+                <button @click.prevent="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -53,8 +53,10 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  //   props: ['id_name'],
+  props: ['id'],
   data() {
     return {
       users: [],
@@ -98,14 +100,32 @@ export default {
         // }
       })
     },
-    // routing to profile (link)
-    profile_uri(id) {
-      return '/user/' + id
+    deleteUser(id) {
+      if (confirm("apakah anda ingin menghapus?")) {
+        axios.delete('/api/users/' + id).then((res) => {
+          // console.log(res);
+          if (res.data.status) {
+            this.$noty.success(res.data.message)
+            this.$router.go()
+          }
+
+        })
+      } else { return false }
     },
+    // routing to profile (link)
+    // profile_uri(id) {
+    //   return '/user/' + id
+    // },
     // routing to profile (method)
     sendData(id) {
       this.$router.push({
         name: 'Profile',
+        params: { id }
+      })
+    },
+    editUser(id) {
+      this.$router.push({
+        name: 'EditUser',
         params: { id }
       })
     }
