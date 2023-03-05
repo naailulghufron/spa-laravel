@@ -5630,6 +5630,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   //   props: ['id_name'],
@@ -30015,34 +30036,67 @@ var render = function () {
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          _c(
-            "ul",
-            _vm._l(_vm.users, function (user) {
-              return _c("li", [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        return _vm.sendData(user.id)
+          _c("table", { staticClass: "table table-sm table-bordered" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.users, function (user) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(user.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.email))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-danger",
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.sendData(user.id)
+                          },
+                        },
                       },
-                    },
-                  },
-                  [_vm._v(_vm._s(user.name))]
-                ),
-              ])
-            }),
-            0
-          ),
+                      [_vm._v("Show")]
+                    ),
+                    _vm._v(" "),
+                    _c("button", { staticClass: "btn btn-sm btn-danger" }, [
+                      _vm._v("Edit"),
+                    ]),
+                    _vm._v(" "),
+                    _c("button", { staticClass: "btn btn-sm btn-danger" }, [
+                      _vm._v("Delete"),
+                    ]),
+                  ]),
+                ])
+              }),
+              0
+            ),
+          ]),
         ],
         1
       ),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("User Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

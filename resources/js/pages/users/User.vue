@@ -14,18 +14,39 @@
         <router-link to="/user/create">Create</router-link>
         <br>
 
-        <ul>
-          <li v-for="user in users">
-            <!-- Cara 1 -->
-            <!-- {{ user.name }} -->
-            <!-- Cara 2 -->
-            <!-- <router-link to="/user/{{ user.name }}">{{ user.name }}</router-link> -->
-            <!-- Cara 3 -->
-            <!-- <router-link :to="profile_uri(user.name)">{{ user.name }}</router-link> -->
-            <!-- Cara 4 -->
-            <a href="" @click.prevent="sendData(user.id)">{{ user.name }}</a>
-          </li>
-        </ul>
+        <!-- <ul> -->
+        <!-- <li v-for="user in users"> -->
+        <!-- Cara 1 -->
+        <!-- {{ user.name }} -->
+        <!-- Cara 2 -->
+        <!-- <router-link to="/user/{{ user.name }}">{{ user.name }}</router-link> -->
+        <!-- Cara 3 -->
+        <!-- <router-link :to="profile_uri(user.name)">{{ user.name }}</router-link> -->
+        <!-- Cara 4 -->
+        <!-- <a href="" @click.prevent="sendData(user.id)">{{ user.name }}</a> -->
+        <!-- </li> -->
+        <!-- </ul> -->
+
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="user in users">
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <button @click.prevent="sendData(user.id)" class="btn btn-sm btn-danger">Show</button>
+                <button class="btn btn-sm btn-danger">Edit</button>
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </div>
