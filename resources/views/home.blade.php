@@ -11,12 +11,15 @@
 
 <body>
     <div id="app">
-        <header-component></header-component>
-        {{-- <h1>Hello wolrd @{{ title }}</h1> --}}
-        <router-view></router-view>
-        {{-- <h1 v-text="`Hello ` + title"></h1> --}}
-        {{-- <example-component></example-component> --}}
-        <footer-component></footer-component>
+        <div class="container-fluid">
+            <header-component></header-component>
+            {{-- <h1>Hello wolrd @{{ title }}</h1> --}}
+            <router-view></router-view>
+            {{-- <h1 v-text="`Hello ` + title"></h1> --}}
+            {{-- <example-component></example-component> --}}
+            <footer-component></footer-component>
+
+        </div>
     </div>
     {{-- <example-component></example-component> --}}
     <script src="{{ asset('js/app.js') }}"></script>

@@ -7,7 +7,8 @@ Vue.use(VueRouter)
 import _404 from '../pages/_404.vue'
 const Home = require('../pages/Home.vue').default
 const About = require('../pages/About.vue').default
-import User from '../pages/User.vue'
+import User from '../pages/users/User.vue'
+import Profile from '../pages/users/Profile.vue'
 // const _404 = require('./pages/_404.vue').default
 
 const routes = [
@@ -24,8 +25,15 @@ const routes = [
   },
   {
     name: 'User',
-    path: '/user/:id_name?',
+    path: '/user',
+    // path: '/user/:id_name?',
     component: User,
+    // props: true,
+  },
+  {
+    name: 'Profile',
+    path: '/user/:id',
+    component: Profile,
     props: true,
   },
   {

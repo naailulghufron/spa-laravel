@@ -1,12 +1,13 @@
 <template>
   <div>
-    <section v-if="id_name">
+    <!-- <section v-if="id_name">
       <div>
         <router-link :to="{ name: 'User' }">Back</router-link>
         User {{ userDetail.name }}
       </div>
-    </section>
-    <section v-else>
+    </section> -->
+    <section>
+      <!-- <section v-else> -->
       <div>
         Daftar User
 
@@ -29,7 +30,7 @@
 
 <script>
 export default {
-  props: ['id_name'],
+  //   props: ['id_name'],
   data() {
     return {
       users: [],
@@ -43,9 +44,9 @@ export default {
       //   ]
     }
   },
-  watch: {
-    "$route": "getUsers"
-  },
+  //   watch: {
+  //     "$route": "getUsers"
+  //   },
   mounted() {
     this.getUsers()
     // axios.get('/api/users').then((response) => {
@@ -63,23 +64,25 @@ export default {
       axios.get('/api/users').then((response) => {
         // console.log(response);
         this.users = response.data.users
-        if (this.id_name) {
-          //   console.log(this.users);
-          //   console.log(this.id_name);
-          //   console.log(this.id_name[0]);
-          this.userDetail = this.users.filter(u => u.id == this.id_name)[0]
-          //   console.log(this.user);
-          //   console.log(this.id_name);
-        }
+        // if (this.id_name) {
+        //   console.log(this.users);
+        //   console.log(this.id_name);
+        //   console.log(this.id_name[0]);
+        //   this.userDetail = this.users.filter(u => u.id == this.id_name)[0]
+        //   console.log(this.user);
+        //   console.log(this.id_name);
+        // }
       })
     },
-    profile_uri(name) {
-      return '/user/' + name.toUpperCase()
+    // routing to profile (link)
+    profile_uri(id) {
+      return '/user/' + id
     },
-    sendData(d) {
+    // routing to profile (method)
+    sendData(id) {
       this.$router.push({
-        name: 'User',
-        params: { id_name: d }
+        name: 'Profile',
+        params: { id }
       })
     }
   },

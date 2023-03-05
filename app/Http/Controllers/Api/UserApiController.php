@@ -13,4 +13,9 @@ class UserApiController extends Controller
         $users = User::take(100)->get();
         return response()->json(compact('users'));
     }
+    public function show($id)
+    {
+        $users = User::find($id);
+        return response()->json(compact('users'));
+    }
 }
