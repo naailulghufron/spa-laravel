@@ -5758,7 +5758,7 @@ __webpack_require__.r(__webpack_exports__);
     getUser: function getUser() {
       var _this = this;
       axios.get('/api/users/' + this.id).then(function (response) {
-        console.log(response.data.users);
+        // console.log(response.data.users);
         _this.form = {
           user_name: response.data.users.name
           //   email: response.data.users.email,
@@ -5768,18 +5768,18 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.users.photo) {
           _this.previewImage = '/images/users/' + response.data.users.photo;
         }
-        console.log(_this.previewImage);
+        // console.log(this.previewImage);
       });
     },
     handleSubmit: function handleSubmit() {
       var _this2 = this;
       var formData = new FormData();
       formData.append('image', this.image);
-      console.log(this.image);
-      console.log(this.form);
-      console.log(this.id);
+      // console.log(this.image);
+      // console.log(this.form);
+      // console.log(this.id);
       axios.post('/api/users/upload/' + this.id, formData).then(function (res) {
-        console.log(res);
+        // console.log(res);
         if (res.data.status) {
           //   alert(res.data.message)
           _this2.$noty.success(res.data.message);

@@ -59,7 +59,7 @@ export default {
         },
         getUser() {
             axios.get('/api/users/' + this.id).then((response) => {
-                console.log(response.data.users);
+                // console.log(response.data.users);
                 this.form = {
                     user_name: response.data.users.name,
                     //   email: response.data.users.email,
@@ -68,17 +68,17 @@ export default {
                 if (response.data.users.photo) {
                     this.previewImage = '/images/users/' + response.data.users.photo
                 }
-                console.log(this.previewImage);
+                // console.log(this.previewImage);
             })
         },
         handleSubmit() {
             let formData = new FormData()
             formData.append('image', this.image)
-            console.log(this.image);
-            console.log(this.form);
-            console.log(this.id);
+            // console.log(this.image);
+            // console.log(this.form);
+            // console.log(this.id);
             axios.post('/api/users/upload/' + this.id, formData).then(res => {
-                console.log(res);
+                // console.log(res);
                 if (res.data.status) {
                     //   alert(res.data.message)
                     this.$noty.success(res.data.message)
