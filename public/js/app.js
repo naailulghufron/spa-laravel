@@ -5765,6 +5765,10 @@ __webpack_require__.r(__webpack_exports__);
         };
 
         _this.userDetail = response.data.users;
+        if (response.data.users.photo) {
+          _this.previewImage = '/images/users/' + response.data.users.photo;
+        }
+        console.log(_this.previewImage);
       });
     },
     handleSubmit: function handleSubmit() {

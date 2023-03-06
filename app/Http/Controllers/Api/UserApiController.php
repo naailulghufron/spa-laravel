@@ -165,15 +165,21 @@ class UserApiController extends Controller
             return response()->json(compact('status', 'message'), 403);
         endif;
 
+        // dd(gettype($request->image));
         $user = User::find($id);
-        $image_name = time() . '.' . $request->image->extension();
-        $user->photo = $image_name;
-        $user->save();
+        if (gettype($request->image) == "object") {
+            $image_name = time() . '.' . $request->image->extension();
+            $user->photo = $image_name;
+            $user->save();
 
-        $request->image->move(public_path('images/users'), $image_name);
+            $request->image->move(public_path('images/users'), $image_name);
+            $message = 'Data berhasil diubah';
+        } else {
+            $message = 'Data tidak diubah';
+        }
+
 
         $status = true;
-        $message = 'Data berhasil diubah';
         $data = $user;
         return response()->json(compact('status', 'message', 'data'));
     }
