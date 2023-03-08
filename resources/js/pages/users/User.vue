@@ -5,6 +5,10 @@
 
 <script>
 import axios from 'axios'
+
+import ButtonComponent from '../../components/ButtonComponent.vue';
+import UserImageComponent from '../../components/UserImageComponent.vue';
+
 export default {
     data() {
         return {
@@ -32,11 +36,34 @@ export default {
                     name: 'email',
                     orderable: true,
                 },
+                {
+                    label: 'Profile Image',
+                    name: 'img',
+                    orderable: true,
+                    component: UserImageComponent,
+                },
+                {
+                    label: 'Test',
+                    name: 'View',
+                    orderable: false,
+                    classes: {
+                        'btn': true,
+                        'btn-danger': true,
+                        'btn-sm': true,
+                    },
+                    event: "click",
+                    handler: this.displayRow,
+                    component: ButtonComponent,
+                },
             ]
         }
     },
     created() {
         this.getData(this.url);
+    },
+    components: {
+        // eslint-disable-next-line
+        ButtonComponent,
     },
     methods: {
         getData(url = this.url, options = this.tableProps) {
@@ -53,7 +80,10 @@ export default {
         },
         reloadTable(tableProps) {
             this.getData(this.url, tableProps);
-        }
+        },
+        displayRow(data) {
+            alert(`You clicked row ${data.id}`);
+        },
     }
 }
 </script>
