@@ -1,142 +1,60 @@
 <template>
-  <div>
-    <!-- <section v-if="id_name">
-      <div>
-        <router-link :to="{ name: 'User' }">Back</router-link>
-        User {{ userDetail.name }}
-      </div>
-    </section> -->
-    <section>
-      <!-- <section v-else> -->
-      <div>
-        Daftar User
-        <br>
-        <router-link to="/user/create">Create</router-link>
-        <br>
-
-        <!-- <ul> -->
-        <!-- <li v-for="user in users"> -->
-        <!-- Cara 1 -->
-        <!-- {{ user.name }} -->
-        <!-- Cara 2 -->
-        <!-- <router-link to="/user/{{ user.name }}">{{ user.name }}</router-link> -->
-        <!-- Cara 3 -->
-        <!-- <router-link :to="profile_uri(user.name)">{{ user.name }}</router-link> -->
-        <!-- Cara 4 -->
-        <!-- <a href="" @click.prevent="sendData(user.id)">{{ user.name }}</a> -->
-        <!-- </li> -->
-        <!-- </ul> -->
-
-        <table class="table table-sm table-bordered">
-          <thead>
-            <tr>
-              <th>User Name</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="user in users">
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td>
-                <button @click.prevent="sendData(user.id)" class="btn btn-sm btn-danger">Show</button>
-                <button @click.prevent="editUser(user.id)" class="btn btn-sm btn-danger">Edit</button>
-                <button @click.prevent="deleteUser(user.id)" class="btn btn-sm btn-danger">Delete</button>
-                <button @click.prevent="uploadImageUser(user.id)" class="btn btn-sm btn-danger">Upload</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </div>
+    <data-table :data="data" :columns="columns" @on-table-props-changed="reloadTable">
+    </data-table>
 </template>
 
 <script>
 import axios from 'axios'
-
 export default {
-  props: ['id'],
-  data() {
-    return {
-      users: [],
-      userDetail: {},
-      //   users: [
-      //     { id: 1, name: 'A1 asdfasf' },
-      //     { id: 2, name: 'A2 rtreggd gdg' },
-      //     { id: 3, name: 'A3 fsfew  ssf sdf' },
-      //     { id: 4, name: 'A4 sfs fsdf sdfsf dsfs' },
-      //     { id: 5, name: 'A5 sdf sfs fsfew' },
-      //   ]
+    data() {
+        return {
+            url: "/api/users",
+            data: {},
+            tableProps: {
+                search: '',
+                length: 10,
+                column: 'id',
+                dir: 'asc'
+            },
+            columns: [
+                {
+                    label: 'ID',
+                    name: 'id',
+                    orderable: true,
+                },
+                {
+                    label: 'Name',
+                    name: 'name',
+                    orderable: true,
+                },
+                {
+                    label: 'Email',
+                    name: 'email',
+                    orderable: true,
+                },
+            ]
+        }
+    },
+    created() {
+        this.getData(this.url);
+    },
+    methods: {
+        getData(url = this.url, options = this.tableProps) {
+            axios.get(url, {
+                params: options
+            })
+                .then(response => {
+                    this.data = response.data;
+                })
+                // eslint-disable-next-line
+                .catch(errors => {
+                    //Handle Errors
+                })
+        },
+        reloadTable(tableProps) {
+            this.getData(this.url, tableProps);
+        }
     }
-  },
-  //   watch: {
-  //     "$route": "getUsers"
-  //   },
-  mounted() {
-    this.getUsers()
-    // axios.get('/api/users').then((response) => {
-    //   console.log(response);
-    //   this.users = response.data.users
-    // })
-
-    // fetch('/api/users').then(res => res.json()).then(data => {
-    //   console.log(data);
-    //   this.users = data.users
-    // })
-  },
-  methods: {
-    getUsers() {
-      axios.get('/api/users').then((response) => {
-        // console.log(response);
-        this.users = response.data.users
-        // if (this.id_name) {
-        //   console.log(this.users);
-        //   console.log(this.id_name);
-        //   console.log(this.id_name[0]);
-        //   this.userDetail = this.users.filter(u => u.id == this.id_name)[0]
-        //   console.log(this.user);
-        //   console.log(this.id_name);
-        // }
-      })
-    },
-    deleteUser(id) {
-      if (confirm("apakah anda ingin menghapus?")) {
-        axios.delete('/api/users/' + id).then((res) => {
-          // console.log(res);
-          if (res.data.status) {
-            this.$noty.success(res.data.message)
-            this.$router.go()
-          }
-
-        })
-      } else { return false }
-    },
-    // routing to profile (link)
-    // profile_uri(id) {
-    //   return '/user/' + id
-    // },
-    // routing to profile (method)
-    sendData(id) {
-      this.$router.push({
-        name: 'Profile',
-        params: { id }
-      })
-    },
-    editUser(id) {
-      this.$router.push({
-        name: 'EditUser',
-        params: { id }
-      })
-    },
-    uploadImageUser(id) {
-      this.$router.push({
-        name: 'UploadImageUser',
-        params: { id }
-      })
-    }
-  },
 }
 </script>
 

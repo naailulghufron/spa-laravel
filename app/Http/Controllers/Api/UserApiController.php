@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class UserApiController extends Controller
 {
@@ -15,10 +16,23 @@ class UserApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     $users = User::take(100)->orderBy('id', 'desc')->get();
+    //     return response()->json(compact('users'));
+    // }
+    public function index(Request $request)
     {
-        $users = User::take(100)->orderBy('id', 'desc')->get();
-        return response()->json(compact('users'));
+        $length = $request->input('length');
+        $sortBy = $request->input('column');
+        $orderBy = $request->input('dir');
+        $searchValue = $request->input('search');
+
+        $query = User::eloquentQuery($sortBy, $orderBy, $searchValue);
+
+        $data = $query->paginate($length);
+
+        return new DataTableCollectionResource($data);
     }
 
     /**
