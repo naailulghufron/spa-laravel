@@ -4,13 +4,12 @@
         <form @submit.prevent="handleLogin">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    v-model="form.email">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" v-model="form.password">
+                <input type="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -22,31 +21,15 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
     data() {
         return {
             secrets: [],
-            form: {
-                'email': '',
-                'password': '',
-            }
         }
     },
     methods: {
         handleLogin() {
-            // console.log(this.form);
-            axios.get('/sanctum/csrf-cookie').then(res => {
-                console.log(res);
-                this.getSecret()
-            })
-        },
-        getSecret() {
-            axios.get('api/secrets').then(res => {
-                console.log(res);
-                this.secrets = res.data
-            })
+            console.log();
         }
     }
 }

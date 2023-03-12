@@ -13,10 +13,10 @@ import Register from '../pages/users/Register.vue'
 import EditUser from '../pages/users/Edit.vue'
 import UploadImageUser from '../pages/users/Upload.vue'
 import Login from '../pages/auth/Login.vue'
+
 // const _404 = require('./pages/_404.vue').default
 
 const routes = [
-
   {
     name: 'Login',
     path: '/login',

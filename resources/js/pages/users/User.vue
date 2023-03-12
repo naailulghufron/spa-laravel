@@ -87,5 +87,11 @@ export default {
     }
 }
 </script>
+<style>
+.table>tbody>tr {
+    /* height: 0 !important; */
+    font-size: 12px !important;
+}
+</style>
 
 <style lang="scss" scoped></style>
