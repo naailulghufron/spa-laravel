@@ -12,12 +12,14 @@
 <body>
     <div id="app">
         <div class="container-fluid">
-            <header-component></header-component>
+            {{-- <header-component></header-component> --}}
             {{-- <h1>Hello wolrd @{{ title }}</h1> --}}
-            <router-view></router-view>
+            {{-- <router-view></router-view> --}}
             {{-- <h1 v-text="`Hello ` + title"></h1> --}}
             {{-- <example-component></example-component> --}}
-            <footer-component></footer-component>
+            {{-- <footer-component></footer-component> --}}
+            <main-component>
+            </main-component>
 
         </div>
     </div>

@@ -31,7 +31,8 @@ import VueNoty from 'vuejs-noty'
 Vue.use(VueNoty)
 import 'vuejs-noty/dist/vuejs-noty.css'
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('main-component', require('./components/MainApp.vue').default)
+Vue.component('login-component', require('./pages/auth/Login.vue').default);
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 
@@ -49,6 +50,7 @@ const app = new Vue({
     el: '#app',
     router,
     data: {
-        title: 'New Title SPA Laravel'
+        title: 'New Title SPA Laravel',
+        is_login: true
     }
 });

@@ -12,10 +12,16 @@ import Profile from '../pages/users/Profile.vue'
 import Register from '../pages/users/Register.vue'
 import EditUser from '../pages/users/Edit.vue'
 import UploadImageUser from '../pages/users/Upload.vue'
+import Login from '../pages/auth/Login.vue'
 // const _404 = require('./pages/_404.vue').default
 
 const routes = [
 
+  {
+    name: 'Login',
+    path: '/login',
+    component: Login,
+  },
   {
     name: 'Home',
     path: '/home',
@@ -68,4 +74,31 @@ const router = new VueRouter({
   routes
 })
 
+const is_authenticated = false
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !is_authenticated) next({ name: 'Login' });
+  if (to.name === 'Login' && is_authenticated) next({ name: 'Home' });
+  next();
+})
+
+// router.beforeEach((to, from, next) => {
+//   console.log(to);
+//   console.log(to.name);
+//   console.log(from);
+//   console.log(next);
+//   if (to.name !== 'Login') next({ name: 'Login' })
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     // this route requires auth, check if logged in
+//     // if not, redirect to login page.
+//     if (!store.getters.isLoggedIn) {
+//       next({ name: 'Login' })
+//     } else {
+//       next() // go to wherever I'm going
+//     }
+//   } else {
+//     next() // does not require auth, make sure to always call next()!
+//   }
+// })
+//
 export default router
